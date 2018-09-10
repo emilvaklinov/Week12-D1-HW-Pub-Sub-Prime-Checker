@@ -1,10 +1,12 @@
+const PubSub = require('../helpers/pub_sub')
+
 const ResultView = function(){
 
 };
 
 ResultView.prototype.displayResult = function(result){
   const resultElement = document.querySelection('#result')
-  resultElement.textContent = `Yes it's a prime number.`;
+  resultElement.textContent = `Yes ${result} it's a prime number.`;
 };
 
 ResultView.prototype.bindEvents = function() {
