@@ -1,17 +1,18 @@
-const PubSub = require('../helpers/pub_sub.js')
 
-const NumberImputView = function(){
 
+const PubSub = require('../helpers/pub_sub.js');
+
+const NumberInputView = function () {
 
 };
 
-NumberImputView.prototype.bindEvents = function(){
-  const form = document.querySelection('#prime-checker-form');
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const inputtedNumber = event.target.number.value;
-    PubSub.publish('NumberImputView:number-submitted', inputtedNumber);
+NumberInputView.prototype.bindEvents = function () {
+  const form = document.querySelector('#prime-checker-form');
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const inputtedNumber = evt.target.number.value;
+    PubSub.publish('NumberInputView:number-submitted', inputtedNumber);
   });
 };
 
-module.exports = NumberImputView;
+module.exports = NumberInputView;

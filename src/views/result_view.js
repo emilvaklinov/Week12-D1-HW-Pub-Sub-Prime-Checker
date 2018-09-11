@@ -1,18 +1,24 @@
 const PubSub = require('../helpers/pub_sub')
 
-const ResultView = function(){
+const ResultView = function () {
 
 };
 
-ResultView.prototype.displayResult = function(result){
-  const resultElement = document.querySelection('#result')
-  resultElement.textContent = `Yes ${result} it's a prime number.`;
-};
-
-ResultView.prototype.bindEvents = function() {
-  PubSub.subscribe('PrimeChecker:result-calculated', () => {
-    const numberIsPrime = event.detail;
-    this.displayResult(numberIsPrime);
+ResultView.prototype.bindEvents = function () {
+  PubSub.subscribe('PrimeChecker:result-calculated', (event) => {
+    const result = event.detail;
+    this.displayResult(result);
   });
 };
+
+ResultView.prototype.displayResult = function (result) {
+  const resultElement = document.querySelector('#result');
+  if (result) {
+    resultElement.textContent = "Yes! It's a prime number.";
+  } else {
+    resultElement.textContent = "No, it's not a prime number.";
+  }
+};
+
+
   module.exports = ResultView;
